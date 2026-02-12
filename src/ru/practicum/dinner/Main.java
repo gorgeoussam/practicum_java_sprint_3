@@ -1,6 +1,7 @@
 package ru.practicum.dinner;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
@@ -30,47 +31,47 @@ public class Main {
     }
 
     private static void printMenu() {
-        System.out.println("Выберите команду:");
-        System.out.println("1 - Добавить новое блюдо");
-        System.out.println("2 - Сгенерировать комбинации блюд");
-        System.out.println("3 - Выход");
+        System.out.println("choose option:");
+        System.out.println("1 - add new dish");
+        System.out.println("2 - generate combo");
+        System.out.println("3 - sortie");
     }
 
     private static void addNewDish() {
-        System.out.println("Введите тип блюда:");
+        System.out.println("enter dish type:");
         String dishType = scanner.nextLine();
-        System.out.println("Введите название блюда:");
+        System.out.println("enter dish name:");
         String dishName = scanner.nextLine();
 
-        // добавьте новое блюдо, с помощью метода DinnerConstructor addNewDish
+        dc.addNewDish(dishType, dishName);
     }
 
     private static void generateDishCombo() {
-        System.out.println("Начинаем конструировать обед...");
+        System.out.println("combining meal...");
 
-        System.out.println("Введите количество наборов, которые нужно сгенерировать:");
+        System.out.println("enter amount of combos to generate:");
         int numberOfCombos = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.println("Вводите типы блюда, разделяя символом переноса строки (enter). Для завершения ввода введите пустую строку");
+        System.out.println("eneter dish type, dividing it with (enter). Enter blank line to complete");
         String nextItem = scanner.nextLine();
 
-        //реализуйте ввод типов блюд
-        ??? selectedTypes = new ArrayList<>();
-        while (!nextItem.isEmpty()) { //варианты вводит пользователь
-            if (dc.???(nextItem)) { //но вы должны проверить, существуют ли эти блюда в хранилище с помощью метода DinnerConstructor checkType
-                selectedTypes.???(nextItem); //выбранное блюдо добавьте в список вариантов
+
+        ArrayList<String> selectedTypes = new ArrayList<>();
+        while (!nextItem.isEmpty()) {
+            if (dc.checkType(nextItem)) {
+                selectedTypes.add(nextItem);
             } else {
-                System.out.println("Такой тип блюд мы еще не умеем готовить. Попробуйте что-нибудь другое!");
+                System.out.println("can't cook this type yet, try something else!");
             }
-            nextItem = scanner.???(); //перейдите к следующему пункту ввода пользователя
+            nextItem = scanner.nextLine();
         }
 
         // сгенерируйте комбинации блюд и выведите на экран
-        ??? generatedCombos = ???(numberOfCombos, selectedTypes); //сгенерируйте варианты комбинаций блюд с помощью метода DinnerConstructor generateCombos
-        for (???; i < numberOfCombos; i++) {
-            System.out.println("Комбинация " + i);
-            System.out.println(generatedCombos.???(???)); //выведите каждый элемент получившейся комбинации
+        ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes);
+        for (int i = 0; i < numberOfCombos; i++) {
+            System.out.println("Combo " + (i+1));
+            System.out.println(generatedCombos.get(i));
         }
     }
 }
