@@ -18,14 +18,11 @@ public class Main {
             String command = scanner.nextLine();
 
             switch (command) {
-                case "1":
-                    addNewDish();
-                    break;
-                case "2":
-                    generateDishCombo();
-                    break;
-                case "3":
+                case "1" -> addNewDish();
+                case "2" -> generateDishCombo();
+                case "3" -> {
                     return;
+                }
             }
         }
     }
@@ -70,7 +67,7 @@ public class Main {
         // сгенерируйте комбинации блюд и выведите на экран
         ArrayList<ArrayList<String>> generatedCombos = dc.generateCombos(numberOfCombos, selectedTypes);
         for (int i = 0; i < numberOfCombos; i++) {
-            System.out.println("Combo " + (i+1));
+            System.out.println("Combo " + (i + 1));
             System.out.println(generatedCombos.get(i));
         }
     }

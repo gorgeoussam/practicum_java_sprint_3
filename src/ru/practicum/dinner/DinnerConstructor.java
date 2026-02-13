@@ -23,7 +23,10 @@ public class DinnerConstructor {
             dinnersByType.put(dishType, dishesForType);
 
         }
-
+        if (dishesForType.contains(dishName)) {
+            System.out.println("this dish already exists");
+            return;
+        }
         dishesForType.add(dishName);
 
     }
